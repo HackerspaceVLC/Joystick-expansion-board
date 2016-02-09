@@ -1,0 +1,1751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0045)http://www.imaginaryindustries.com/blog/?p=80 -->
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<title>  Turning an Arduino Leonardo into a joystick. | Imaginary Industries</title>
+	
+	<!-- Basic Meta Data -->
+	<meta name="copyright" content="Design is copyright 2008 - 2014 The Theme Foundry">
+	<meta http-equiv="imagetoolbar" content="no">
+	
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="http://www.imaginaryindustries.com/blog/wp-content/themes/subTheme/images/favicon.ico">
+
+	<!--Stylesheets-->
+	<link href="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/style.css" type="text/css" media="screen" rel="stylesheet">
+	<!--[if lt IE 8]><link rel="stylesheet" type="text/css" media="screen" href="http://www.imaginaryindustries.com/blog/wp-content/themes/vigilance/stylesheets/ie.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" media="screen" href="http://www.imaginaryindustries.com/blog/wp-content/themes/vigilance/stylesheets/ie6.css" /><![endif]-->
+
+	<!--WordPress-->
+	<link rel="alternate" type="application/rss+xml" title="Imaginary Industries RSS Feed" href="http://www.imaginaryindustries.com/blog/?feed=rss2">
+	<link rel="pingback" href="http://www.imaginaryindustries.com/blog/xmlrpc.php">
+
+	<!--WP Hook-->
+		<link rel="alternate" type="application/rss+xml" title="Imaginary Industries » Turning an Arduino Leonardo into a joystick. Comments Feed" href="http://www.imaginaryindustries.com/blog/?feed=rss2&p=80">
+<link rel="stylesheet" id="wp-syntax-css-css" href="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/wp-syntax.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/prettify.css" type="text/css" media="all">
+<script type="text/javascript" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/jquery.js"></script><style type="text/css"></style>
+<script type="text/javascript" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/prettify.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.imaginaryindustries.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.imaginaryindustries.com/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="The 2012 Transit of Venus" href="http://www.imaginaryindustries.com/blog/?p=64">
+<link rel="next" title="Arduino Leonardo + USB3.0 = Instant BSOD" href="http://www.imaginaryindustries.com/blog/?p=118">
+<meta name="generator" content="WordPress 3.9">
+<link rel="canonical" href="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/Turning an Arduino Leonardo into a joystick.   Imaginary Industries.htm">
+<link rel="shortlink" href="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/Turning an Arduino Leonardo into a joystick.   Imaginary Industries.htm">
+</head>
+<body class="single single-post postid-80 single-format-standard">
+	<div class="skip-content"><a href="http://www.imaginaryindustries.com/blog/?p=80#content">Skip to content</a></div>
+	<div id="wrapper">
+		<div id="header" class="clear">
+			<div id="title"><a href="http://www.imaginaryindustries.com/blog">Imaginary Industries</a></div>			<div id="description">
+				<h2>Electronics, Photography, and boredom.</h2>
+			</div><!--end description-->
+			<div id="nav">
+				<ul>
+					<li class="page_item "><a href="http://www.imaginaryindustries.com/blog">Home</a></li>
+																												<li class="cat-item cat-item-6"><a href="http://www.imaginaryindustries.com/blog/?cat=6" title="View all posts filed under Computers">Computers</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.imaginaryindustries.com/blog/?cat=3" title="View all posts filed under Electronics">Electronics</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.imaginaryindustries.com/blog/?cat=4" title="View all posts filed under Photography">Photography</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.imaginaryindustries.com/blog/?cat=5" title="View all posts filed under Python">Python</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.imaginaryindustries.com/blog/?cat=1" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.imaginaryindustries.com/blog/?cat=11" title="View all posts filed under Venting">Venting</a>
+</li>
+									</ul>
+			</div><!--end nav-->
+		</div><!--end header-->
+		<div id="content" class="pad">
+		
+					<div id="post-80" class="post-80 post type-post status-publish format-standard hentry category-electronics">
+			<div class="post-header">
+				<h1>Turning an Arduino Leonardo into a joystick.</h1>
+				<div id="single-date" class="date"><span>2012</span> November 3</div>
+			</div><!--end post header-->
+			<div class="meta clear">
+				<div class="tags"></div>
+				<div class="author">by Connor</div>
+			</div><!--end meta-->
+			<div class="entry clear">
+								<p>I recently bought a Arduino Leonardo in the interest of updating the interface in an old arcade-style controller I occasionally use to play <a href="http://mamedev.org/">MAME</a> games.</p>
+<p>As such, I needed to figure out how to get the leonardo to properly act like a joystick.<br>
+Anyways, this is heavily based on drake250′s work, which is on the freetronics forum <a href="http://forum.freetronics.com/viewtopic.php?t=734">here</a>. HelmPCB’s <a href="http://www.imaginaryindustries.com/blog/helmpcb.com/electronics/usb-joystick">USB Joystick</a> site was also a useful reference.<br>
+There is a useful list of HID descriptors <a href="http://www.freebsddiary.org/APC/usb_hid_usages.php">here</a>.<br>
+ Also, the “HID Descriptor Tool” from usb.org is also very useful for seeing how HID descriptors are put together. <a href="http://www.usb.org/developers/hidpage#HID Descriptor Tool">Get it here</a>.</p>
+<p>In the end, I wound up rewriting most of the drake250′s HID descriptor myself, based on some of the USB.org docs, and the HID Descriptor Tool.</p>
+<p>Anyways, here are my modified files you would need to turn your own leonardo into a joystick. These files support an 8-axis joystick, with two hat-switches, and 32 buttons.<br>
+If you want fewer buttons/axes/whatever, you can either just ignore the things you don’t need, or modify the HID descriptor yourself. As it is, for everything the HID descriptor currently specifies, it only needs 12 bytes per PC-update, so I’m not too worried about the extra axes causing issues or slowing things down.</p>
+<p><img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/leoJoy-Arduino-1.01.png" alt="" title="leoJoy  Arduino 1.0" class="alignnone size-medium wp-image-105"><br>
+<font size="-3">The windows joystick info dialog only seems to be able to display 7 axes. I’m <i>fairly</i> sure the eighth axis there. However, since the built-in windows dialog works <i>almost</i> the time, I have not found any tools for looking at joystick readouts other then the built-in windows dialog. I mean, how may people have an 8-axis joystick anyways?<br>
+Also, the HID documents seem to also support the belief that the HID spec allows a maximum of 63 buttons. However, again, the windows tools for inspecting a joystick only support 32. You could add more quite easily, but you would have to test their functionality yourself.</font></p>
+<p>Modified arduino files (replace the files in <code>{arduino executable dir}\hardware\arduino\cores\arduino\</code> with these):</p>
+<p><a href="http://www.imaginaryindustries.com/arduino/leoJoy/USBAPI.h">USBAPI.h</a><br>
+<a href="http://www.imaginaryindustries.com/arduino/leoJoy/HID.cpp">HID.cpp</a></p>
+<p>And the main source file:</p>
+<p><a href="http://www.imaginaryindustries.com/arduino/leoJoy/leoJoy.ino">&nbsp;leoJoy.ino&nbsp;</a></p>
+<p>It’s contents:</p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre class="prettyprint prettyprinted"><span class="lit">7</span><span class="pln">
+</span><span class="lit">8</span><span class="pln">
+</span><span class="lit">9</span><span class="pln">
+</span><span class="lit">10</span><span class="pln">
+</span><span class="lit">11</span><span class="pln">
+</span><span class="lit">12</span><span class="pln">
+</span><span class="lit">13</span><span class="pln">
+</span><span class="lit">14</span><span class="pln">
+</span><span class="lit">15</span><span class="pln">
+</span><span class="lit">16</span><span class="pln">
+</span><span class="lit">17</span><span class="pln">
+</span><span class="lit">18</span><span class="pln">
+</span><span class="lit">19</span><span class="pln">
+</span><span class="lit">20</span><span class="pln">
+</span><span class="lit">21</span><span class="pln">
+</span><span class="lit">22</span><span class="pln">
+</span><span class="lit">23</span><span class="pln">
+</span><span class="lit">24</span><span class="pln">
+</span><span class="lit">25</span></pre></td><td class="code"><pre class="c prettyprint prettyprinted" style="font-family: monospace;"><span class="typ">JoyState_t</span><span class="pln"> joySt</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">		</span><span style="color: #666666; font-style: italic;"><span class="com">// Joystick state structure</span></span><span class="pln">
+&nbsp;
+</span><span style="color: #993333;"><span class="kwd">void</span></span><span class="pln"> setup</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #009900;"><span class="pun">)</span></span><span class="pln">
+</span><span style="color: #009900;"><span class="pun">{</span></span><span class="pln">
+	pinMode</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">13</span></span><span style="color: #339933;"><span class="pun">,</span></span><span class="pln"> OUTPUT</span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">xAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">yAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">zAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">xRotAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">yRotAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">zRotAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">throttle</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">rudder</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw1</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw2</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">buttons</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+</span><span style="color: #009900;"><span class="pun">}</span></span></pre></td></tr></tbody></table></div>
+
+<p>The interesting thing here is <code>JoyState_t</code>, which is a struct that stores the state for all the joystick controls.</p>
+<p>The struct is defined in <code>USBAPI.h</code> as such:</p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre class="prettyprint prettyprinted"><span class="lit">53</span><span class="pln">
+</span><span class="lit">54</span><span class="pln">
+</span><span class="lit">55</span><span class="pln">
+</span><span class="lit">56</span><span class="pln">
+</span><span class="lit">57</span><span class="pln">
+</span><span class="lit">58</span><span class="pln">
+</span><span class="lit">59</span><span class="pln">
+</span><span class="lit">60</span><span class="pln">
+</span><span class="lit">61</span><span class="pln">
+</span><span class="lit">62</span><span class="pln">
+</span><span class="lit">63</span><span class="pln">
+</span><span class="lit">64</span><span class="pln">
+</span><span class="lit">65</span><span class="pln">
+</span><span class="lit">66</span><span class="pln">
+</span><span class="lit">67</span><span class="pln">
+</span><span class="lit">68</span><span class="pln">
+</span><span class="lit">69</span><span class="pln">
+</span><span class="lit">70</span><span class="pln">
+</span><span class="lit">71</span></pre></td><td class="code"><pre class="c prettyprint prettyprinted" style="font-family: monospace;"><span style="color: #993333;"><span class="kwd">typedef</span></span><span class="pln"> </span><span style="color: #993333;"><span class="kwd">struct</span></span><span class="pln"> </span><span class="typ">JoyState</span><span class="pln"> 		</span><span style="color: #666666; font-style: italic;"><span class="com">// Pretty self explanitory. Simple state to store all the joystick parameters</span></span><span class="pln">
+</span><span style="color: #009900;"><span class="pun">{</span></span><span class="pln">
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		xAxis</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		yAxis</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		zAxis</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		xRotAxis</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		yRotAxis</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		zRotAxis</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		throttle</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		rudder</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		hatSw1</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">			</span><span style="color: #666666; font-style: italic;"><span class="com">// 0-7 correspond to 0-315° in 45° steps. 8 means the hat-switch is centered</span></span><span class="pln">
+	</span><span style="color: #993333;"><span class="typ">uint8_t</span></span><span class="pln">		hatSw2</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">			</span><span style="color: #666666; font-style: italic;"><span class="com">// All other values are invalid</span></span><span class="pln">
+&nbsp;
+	</span><span style="color: #993333;"><span class="typ">uint32_t</span></span><span class="pln">	buttons</span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">		</span><span style="color: #666666; font-style: italic;"><span class="com">// 32 general buttons  (Each bit corresponds to a separate button)</span></span><span class="pln">
+&nbsp;
+</span><span style="color: #009900;"><span class="pun">}</span></span><span class="pln"> </span><span class="typ">JoyState_t</span><span style="color: #339933;"><span class="pun">;</span></span></pre></td></tr></tbody></table></div>
+
+<p>Continuing on with the contents of <code>leoJoy.ino</code>:</p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre class="prettyprint prettyprinted"><span class="lit">29</span><span class="pln">
+</span><span class="lit">30</span><span class="pln">
+</span><span class="lit">31</span><span class="pln">
+</span><span class="lit">32</span><span class="pln">
+</span><span class="lit">33</span><span class="pln">
+</span><span class="lit">34</span><span class="pln">
+</span><span class="lit">35</span><span class="pln">
+</span><span class="lit">36</span><span class="pln">
+</span><span class="lit">37</span><span class="pln">
+</span><span class="lit">38</span><span class="pln">
+</span><span class="lit">39</span><span class="pln">
+</span><span class="lit">40</span><span class="pln">
+</span><span class="lit">41</span><span class="pln">
+</span><span class="lit">42</span><span class="pln">
+</span><span class="lit">43</span><span class="pln">
+</span><span class="lit">44</span><span class="pln">
+</span><span class="lit">45</span><span class="pln">
+</span><span class="lit">46</span><span class="pln">
+</span><span class="lit">47</span><span class="pln">
+</span><span class="lit">48</span><span class="pln">
+</span><span class="lit">49</span><span class="pln">
+</span><span class="lit">50</span><span class="pln">
+</span><span class="lit">51</span><span class="pln">
+</span><span class="lit">52</span><span class="pln">
+</span><span class="lit">53</span><span class="pln">
+</span><span class="lit">54</span><span class="pln">
+</span><span class="lit">55</span><span class="pln">
+</span><span class="lit">56</span><span class="pln">
+</span><span class="lit">57</span><span class="pln">
+</span><span class="lit">58</span><span class="pln">
+</span><span class="lit">59</span><span class="pln">
+</span><span class="lit">60</span><span class="pln">
+</span><span class="lit">61</span><span class="pln">
+</span><span class="lit">62</span><span class="pln">
+</span><span class="lit">63</span><span class="pln">
+</span><span class="lit">64</span><span class="pln">
+</span><span class="lit">65</span><span class="pln">
+</span><span class="lit">66</span><span class="pln">
+</span><span class="lit">67</span><span class="pln">
+</span><span class="lit">68</span><span class="pln">
+</span><span class="lit">69</span></pre></td><td class="code"><pre class="c prettyprint prettyprinted" style="font-family: monospace;"><span style="color: #993333;"><span class="kwd">void</span></span><span class="pln"> loop</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #009900;"><span class="pun">)</span></span><span class="pln">
+</span><span style="color: #009900;"><span class="pun">{</span></span><span class="pln">
+&nbsp;
+&nbsp;
+&nbsp;
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">xAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> random</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">255</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">yAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> random</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">255</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">zAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> random</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">255</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">xRotAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> random</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">255</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">yRotAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> random</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">255</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">zRotAxis</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> random</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">255</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #666666; font-style: italic;"><span class="com">//joySt.throttle = random(255);</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">rudder</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> random</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">255</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">throttle</span></span><span style="color: #339933;"><span class="pun">++;</span></span><span class="pln">
+&nbsp;
+&nbsp;
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">buttons</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">&lt;&lt;=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">1</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #b1b100;"><span class="kwd">if</span></span><span class="pln"> </span><span style="color: #009900;"><span class="pun">(</span></span><span class="pln">joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">buttons</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">==</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #009900;"><span class="pun">)</span></span><span class="pln">
+		joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">buttons</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">1</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw1</span></span><span style="color: #339933;"><span class="pun">++;</span></span><span class="pln">
+	joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw2</span></span><span style="color: #339933;"><span class="pun">--;</span></span><span class="pln">
+&nbsp;
+	</span><span style="color: #b1b100;"><span class="kwd">if</span></span><span class="pln"> </span><span style="color: #009900;"><span class="pun">(</span></span><span class="pln">joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw1</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">&gt;</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">8</span></span><span style="color: #009900;"><span class="pun">)</span></span><span class="pln">
+		joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw1</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">0</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #b1b100;"><span class="kwd">if</span></span><span class="pln"> </span><span style="color: #009900;"><span class="pun">(</span></span><span class="pln">joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw2</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">&gt;</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">8</span></span><span style="color: #009900;"><span class="pun">)</span></span><span class="pln">
+		joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">hatSw2</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">=</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">8</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	delay</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">100</span></span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+	</span><span style="color: #b1b100;"><span class="kwd">if</span></span><span class="pln"> </span><span style="color: #009900;"><span class="pun">(</span></span><span class="pln">joySt</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">throttle</span></span><span class="pln"> </span><span style="color: #339933;"><span class="pun">&gt;</span></span><span class="pln"> </span><span style="color: #0000dd;"><span class="lit">127</span></span><span style="color: #009900;"><span class="pun">)</span></span><span class="pln">
+		digitalWrite</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">13</span></span><span style="color: #339933;"><span class="pun">,</span></span><span class="pln"> HIGH</span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+	</span><span style="color: #b1b100;"><span class="kwd">else</span></span><span class="pln">
+		digitalWrite</span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #0000dd;"><span class="lit">13</span></span><span style="color: #339933;"><span class="pun">,</span></span><span class="pln"> LOW</span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+&nbsp;
+	</span><span style="color: #666666; font-style: italic;"><span class="com">// Call Joystick.move</span></span><span class="pln">
+	</span><span class="typ">Joystick</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">setState</span></span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #339933;"><span class="pun">&amp;</span></span><span class="pln">joySt</span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span><span class="pln">
+&nbsp;
+</span><span style="color: #009900;"><span class="pun">}</span></span></pre></td></tr></tbody></table></div>
+
+<p>This section just generates random values and sets the analog axes to them. Each bit in <code>buttons</code> is also set in sequence, using bit-shifting.<br>
+It also steps through the different hat-switch positions. It steps hatSw1 fowards, and hatSw2 backwards. Lastly, the throttle axis it linearly ramped.</p>
+<p>The last (and most important thing) here is</p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="line_numbers"><pre class="prettyprint prettyprinted"><span class="lit">67</span></pre></td><td class="code"><pre class="c prettyprint prettyprinted" style="font-family: monospace;"><span class="pln">	</span><span class="typ">Joystick</span><span class="pun">.</span><span style="color: #202020;"><span class="pln">setState</span></span><span style="color: #009900;"><span class="pun">(</span></span><span style="color: #339933;"><span class="pun">&amp;</span></span><span class="pln">joySt</span><span style="color: #009900;"><span class="pun">)</span></span><span style="color: #339933;"><span class="pun">;</span></span></pre></td></tr></tbody></table></div>
+
+<p>This is the function that actually sends the values in the <code>joySt</code> struct to the computer. </p>
+<p>At this point, all that is needed to make a useable joystick is to replace the contents of <code>loop()</code> with something that actually reads hardware buttons.</p>
+<hr>
+<p>Anyways, everything is under the arduino license (I think it’s GPL, but the only file I edited with a license actually looks to be BSD-ish. Anyways, do whatever, just don’t be an ass).</p>
+											</div><!--end entry-->
+			<div class="post-footer">
+				<p>from → <a href="http://www.imaginaryindustries.com/blog/?cat=3" title="View all posts in Electronics" rel="category">Electronics</a></p>
+			</div><!--end post footer-->
+		</div><!--end post-->
+			<!-- You can start editing here. -->
+<div id="comments">
+			<div class="comment-number">
+			<span>83 Responses</span>
+							<a id="leavecomment" href="http://www.imaginaryindustries.com/blog/?p=80#respond" title="Leave One">leave one →</a>
+					</div><!--end comment-number-->
+					<ol class="commentlist">
+				
+<li class="comment even thread-even depth-1" id="comment-148">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/6b210da6b7c1cc0468b11d8c137ce627" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Yianni <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-148">permalink</a></span>		</div>
+		<div class="c-date">
+			November 19, 2012		</div>
+				<p>hello,</p>
+<p>i just checked the HID.cpp and USBAPI.h and Joystick definitions are there but i get this error:</p>
+<p>any ideas?</p>
+<p>C:\Users\Ark\AppData\Local\Temp\build5316580264749198580.tmp/sketch_nov19a.cpp:70: undefined reference to `Joystick’<br>
+C:\Users\Ark\AppData\Local\Temp\build5316580264749198580.tmp/sketch_nov19a.cpp:70: undefined reference to `Joystick’<br>
+C:\Users\Ark\AppData\Local\Temp\build5316580264749198580.tmp/sketch_nov19a.cpp:70: undefined reference to `Joystick_::setState(JoyState*)’</p>
+<p>Thanks in advance. Yianni</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=148#respond" onclick="return addComment.moveForm(&quot;comment-148&quot;, &quot;148&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-164">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">That Guy</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-164">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			November 26, 2012		</div>
+				<p>@Yianni:</p>
+<p>It sounds like you didn’t properly replace USBAPI.h.<br>
+Both the Joystick class, and Joystick_::setState are both forward-defined there.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=164#respond" onclick="return addComment.moveForm(&quot;comment-164&quot;, &quot;164&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-151">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/eb1ee234b95be1b1df0694dfd07513bf" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Alex Kuptsov <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-151">permalink</a></span>		</div>
+		<div class="c-date">
+			November 20, 2012		</div>
+				<p>I’m new to arduino world</p>
+<p>thanks a lot</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=151#respond" onclick="return addComment.moveForm(&quot;comment-151&quot;, &quot;151&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-184">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/8a4468b1fc8d999eecd49a1e947fc9e9" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Thom-x <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-184">permalink</a></span>		</div>
+		<div class="c-date">
+			December 31, 2012		</div>
+				<p>Thank you ! It works great !</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=184#respond" onclick="return addComment.moveForm(&quot;comment-184&quot;, &quot;184&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-185">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/f6c87af1e90af632fc3652666b69cc15" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			José Ferreira <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-185">permalink</a></span>		</div>
+		<div class="c-date">
+			January 7, 2013		</div>
+				<p>Can you help me puting the clutch in the code.</p>
+<p>Thanks!!</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=185#respond" onclick="return addComment.moveForm(&quot;comment-185&quot;, &quot;185&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-187">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">That Guy</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-187">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			January 13, 2013		</div>
+				<p>Uh… What?</p>
+<p>DO you mean you want to add a clutch pedal? If so, just assign it to another analog axis, or a button, depending on how you want it to function.</p>
+<p>You could also tweak the HID descriptor. I think (IIRC), that there is a specific descriptor for a clutch pedal, it shouldn’t be too hard to add it to the complete descriptor.</p>
+<p>Just don’t forget you need to update the USB report size to include the new clutch.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=187#respond" onclick="return addComment.moveForm(&quot;comment-187&quot;, &quot;187&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-223">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/eb719de3cccc60906358ccdedd2e5ff2" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Rômulo <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-223">permalink</a></span>		</div>
+		<div class="c-date">
+			January 30, 2013		</div>
+				<p>Hey, I really liked your explanation, but, how could I wire the potentiometers of the throttle, brake and clutch to the axis?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=223#respond" onclick="return addComment.moveForm(&quot;comment-223&quot;, &quot;223&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-229">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">That Guy</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-229">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			February 1, 2013		</div>
+				<p>You would need to use the arduino ADCs for that. </p>
+<p>Additionally, since the ATmega32U4 ADCs are 10 bit, you will need to divide the value they return down to the 8-bit size of the analog axes the current HID descriptor allocate.</p>
+<p>Google “Arduino Potentiometer” for more information.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=229#respond" onclick="return addComment.moveForm(&quot;comment-229&quot;, &quot;229&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-294">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/8edf57ffb656c6d6aaec977f0f824c25" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Dave <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-294">permalink</a></span>		</div>
+		<div class="c-date">
+			February 25, 2013		</div>
+				<p>If you pack the structure and put it in the same order as the report, you don’t need any extra code to send it — you can just send the whole structure at once.</p>
+<p>Have you tried two joysticks?  I can’t seem to get that to work.</p>
+<p>Thanks for the code!</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=294#respond" onclick="return addComment.moveForm(&quot;comment-294&quot;, &quot;294&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-452">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/79d2d96422a2f9243d48dfa6b9b073f6" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Mason H. <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-452">permalink</a></span>		</div>
+		<div class="c-date">
+			April 1, 2013		</div>
+				<p>How would I go about adding two buttons to be bound to a digital read of pins 1 and 2 of a similar board? I’ve got one button working fine, I just can’t figure out a second one…</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=452#respond" onclick="return addComment.moveForm(&quot;comment-452&quot;, &quot;452&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-477">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/364e3daa18281750752c0287f4494bc6" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Mario <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-477">permalink</a></span>		</div>
+		<div class="c-date">
+			April 8, 2013		</div>
+				<p>Hello,</p>
+<p>i tried to make a simple button, when i press this button the Leonardo should give a signal to the windows gamepad (Arduino Leonardo) that the button is pressed.</p>
+<p>With this Code i can see in the SerialMonitor if i press the Button.</p>
+<p>void setup(){<br>
+	Serial.begin(9600);<br>
+	pinMode(2,INPUT);<br>
+}</p>
+<p>void loop(){<br>
+	int status;<br>
+	status = digitalRead(2);<br>
+	Serial.println(status,DEC);<br>
+}</p>
+<p>how would the Code look like when i want to use the leoJoy.ino?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=477#respond" onclick="return addComment.moveForm(&quot;comment-477&quot;, &quot;477&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-546">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			That Guy <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-546">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			May 5, 2013		</div>
+				<p>The buttons are bit-mapped to the <code>buttons</code> variable in the <code>joySt</code> struct. </p>
+<p>You would need to make it so when the buttons are pressed, it sets the various bits in <code>buttons</code>. Then you simply call <code>Joystick.setState(&amp;joySt);</code> to update the joystick state to the computer.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=546#respond" onclick="return addComment.moveForm(&quot;comment-546&quot;, &quot;546&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-540">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/b8fcc5a3ee788f8dd54fbe4081998acd" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			wwAGHww <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-540">permalink</a></span>		</div>
+		<div class="c-date">
+			April 30, 2013		</div>
+				<p>Sory for my question, but will it work on an other arduino board ?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=540#respond" onclick="return addComment.moveForm(&quot;comment-540&quot;, &quot;540&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-544">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			That Guy <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-544">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			May 5, 2013		</div>
+				<p>No. Most of the arduinos have another IC between the microprocessor (the ATmega328P) and the computer. The Leonardo is special because it is directly connected over USB.</p>
+<p>You can reflash the ATmega16U2 that is used as the USB-serial converter to act as a HID device, but it no longer behaves as a normal arduino (you need to program it over ICSP at that point).</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=544#respond" onclick="return addComment.moveForm(&quot;comment-544&quot;, &quot;544&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-551">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/8079f2891c7aa15bae7f4eb73cde743a" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Edgar <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-551">permalink</a></span>		</div>
+		<div class="c-date">
+			May 11, 2013		</div>
+				<p>Hi, how would this work on a board like the nanowii?<br>
+<a href="http://flyduino.net/Multikopter-FC-Multiwii_1" rel="nofollow">http://flyduino.net/Multikopter-FC-Multiwii_1</a></p>
+<p>and would it be possible to let the Invensense MPU6050 be input for a 3 axis joystick?</p>
+<p>I have no experience with arduino or any coding at all, but this board looks like a good candidate to make a nice flight simulator yoke.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=551#respond" onclick="return addComment.moveForm(&quot;comment-551&quot;, &quot;551&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-552">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">That Guy</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-552">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			May 11, 2013		</div>
+				<p>I don’t see any fundamental issues.</p>
+<p>You would have to figure out how to feed the MPU6050 output into the joystick struct.</p>
+<p>One comment I have is that is that I don’t have a high opinion of using an IMU for a joystick. Actual mechanical position measurement devices are almost invariably nicer.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=552#respond" onclick="return addComment.moveForm(&quot;comment-552&quot;, &quot;552&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-558">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/022905efaf3b0f9d9e0e6bb417730164" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Félix Dhumes <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-558">permalink</a></span>		</div>
+		<div class="c-date">
+			May 20, 2013		</div>
+				<p>Good morning.<br>
+Sorry if my question is obvious, but I’m French and I speack English just a little.<br>
+With this modification and this program, I have just, for example, to modify the void loop like this:</p>
+<p>void loop()<br>
+{<br>
+       axisx = analogRead(1);<br>
+       map(axisx, 0, 1024, 0, 255);<br>
+        joySt.xAxis = axisx;<br>
+}</p>
+<p>Sorry for my bad English, and have a good day.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=558#respond" onclick="return addComment.moveForm(&quot;comment-558&quot;, &quot;558&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-559">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">That Guy</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-559">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			May 20, 2013		</div>
+				<p>I’m not sure how map() works, but I don’t think that will work, as map() has no way to change the value of axisx.</p>
+<p>Possibly you need to pass the value you want map to translate as a pointer – </p>
+<p>map(&amp;axisx, 0, 1024, 0, 255);</p>
+<p>But I don’t know if map works that way. It may also return the scaled value, rather then operating on a pointer to the mapped value.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=559#respond" onclick="return addComment.moveForm(&quot;comment-559&quot;, &quot;559&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even depth-2" id="comment-1731">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/450d70b6073ee98767216d84148c1e4e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Christian Demmler <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1731">permalink</a></span>		</div>
+		<div class="c-date">
+			April 5, 2014		</div>
+				<p>Do it simpler, just drop 2 bits off by shifting (“&gt;&gt;”) the data to the right by two bits (same as dividing it by 4)… So a 10-bit value of 753 (binary: 1011110001) becomes an 8-bit value of 188 (1011100, the 01 at the end get dropped).</p>
+<p>joySt.xAxis = analogRead(A0) &gt;&gt; 2;</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1731#respond" onclick="return addComment.moveForm(&quot;comment-1731&quot;, &quot;1731&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-3" id="comment-1732">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1732">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			April 5, 2014		</div>
+				<p>I was assuming he wanted the full 10-bit resolution.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1732#respond" onclick="return addComment.moveForm(&quot;comment-1732&quot;, &quot;1732&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment even depth-4" id="comment-1733">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/450d70b6073ee98767216d84148c1e4e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Christian Demmler <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1733">permalink</a></span>		</div>
+		<div class="c-date">
+			April 6, 2014		</div>
+				<p>Well, I think that can pretty much not work with this code, since the HID descriptor in HID.cpp just assigns 8bits of transferred data per axis and there is nothing the code within loop() can do to change that. If you got a working example of providing the leojoy code with 10bit axis capabilities, I think that would be greatly appreciated not only by me – have been trying all weekend to make it work, but still ended up with a 10bit joystick (values 511 showing) that doesn’t seem to transfer any data using joySt.xAxis = random(1023);</p>
+<p>I guess the data I send simply doesn’t match what the HID descriptor says it should look like, but I couldn’t for the life of me and even using minimal examples (2 16bit-axes, 0 buttons) make it work.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1733#respond" onclick="return addComment.moveForm(&quot;comment-1733&quot;, &quot;1733&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment odd alt depth-5" id="comment-1735">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/450d70b6073ee98767216d84148c1e4e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Christian Demmler <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1735">permalink</a></span>		</div>
+		<div class="c-date">
+			April 6, 2014		</div>
+				<p>Scratch that. I just reinstalled the Arduino IDE and started off a clean slate. Turns out the compiler was using some version of HID.cpp that I wasn’t editing, and I had made some other stupid mistakes such as not realizing how array declaration (#define joyBytes) counted, therefore ending up a data array that was one size too small. So for all who want to try this and just want a working example:</p>
+<p>Change in HID.cpp, line 171 from:<br>
+“0×75, 0×08,            // REPORT_SIZE (8)” to<br>
+“0×75, 0×10,            // REPORT_SIZE (16)” (this will make your throttle and rudder axes transfer 16 bit information.</p>
+<p>HID.cpp, line 309 from:<br>
+“#define joyBytes 13″ to<br>
+“#define joyBytes 15″</p>
+<p>and then change HID.cpp, lines 325-335 (data[4] to data[12] declarations) to something like this:<br>
+”<br>
+data{4] = (uint8_t)((joySt-&gt;throttle &amp; 0xFF00) &gt;&gt; 8);<br>
+    data[5] = (uint8_t)(joySt-&gt;throttle &amp; 0x00FF);<br>
+    data{6] = (uint8_t)((joySt-&gt;rudder &amp; 0xFF00) &gt;&gt; 8);<br>
+    data[7] = (uint8_t)(joySt-&gt;rudder &amp; 0x00FF);</p>
+<p><code>data[8] = (joySt-&gt;hatSw2 &lt;&lt; 4) | joySt-&gt;hatSw1;     // Pack hat-switch states into a single byte</code></p><code>
+</code><p><code>data[9] = joySt-&gt;xAxis;     // X axis<br>
+data[10] = joySt-&gt;yAxis;        // Y axis<br>
+data[11] = joySt-&gt;zAxis;        // Z axis<br>
+data[12] = joySt-&gt;xRotAxis;     // rX axis<br>
+data[13] = joySt-&gt;yRotAxis;     // rY axis<br>
+data[14] = joySt-&gt;zRotAxis;     // rZ axis<br>
+</code></p>
+<p>”</p>
+<p>Then of course you need to adapt the declarations of the throttle+rudder axis in USBAPI.h, lines 63-64, to be 16bit:</p>
+<p>“uint16_t       throttle;<br>
+    uint16_t        rudder;”</p>
+<p>And finally, a matching  definition to put 16bit values in there in the leojoy.ino main loop, lines 41-43:</p>
+<p>“joySt.rudder = random(65535);</p>
+<p><code>joySt.throttle = analogRead(A0); // to get the 10bit AD-readout from Pin A0."<br>
+</code></p>
+<p>Hope that helps some of you guys!</p>
+				<div class="reply">
+					</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even depth-5" id="comment-1736">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/450d70b6073ee98767216d84148c1e4e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Christian Demmler <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1736">permalink</a></span>		</div>
+		<div class="c-date">
+			April 6, 2014		</div>
+				<p>Well, sorry, there are some mistakes in the code I just posted (“data{” doesn work so well as “data[“), but to make up for it, here are complete working files with 2x16bit and 6x8bit axes (and one of them is already reading off your analog input).</p>
+<p><a href="https://www.wetransfer.com/downloads/91a3f27c89a1ad03e7560c4dab57505420140406194527/a883df940fb45f6b49bd46f76048760120140406194527/678887" rel="nofollow">https://www.wetransfer.com/downloads/91a3f27c89a1ad03e7560c4dab57505420140406194527/a883df940fb45f6b49bd46f76048760120140406194527/678887</a></p>
+<p>Hope this helps some guys, this did essentially take me all weekend out of my own stupidity.</p>
+				<div class="reply">
+					</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-575">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/de96c29f062bb8a9df71e4ba5b1a6239" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Jens Eggert <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-575">permalink</a></span>		</div>
+		<div class="c-date">
+			May 28, 2013		</div>
+				<p>Hello,</p>
+<p>great upgrading for the USB-support!</p>
+<p>I replaced HID.cpp and USBAPI.h.</p>
+<p>But when i try to compile your code, i get following error:<br>
+‘JoyState_t’ does not name a type</p>
+<p>Do i have to refresh both files inside of the Arduino development environment or something like that?</p>
+<p>Jens</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=575#respond" onclick="return addComment.moveForm(&quot;comment-575&quot;, &quot;575&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-580">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/ac974614bb134406bde579d2d9b97105" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Marshall <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-580">permalink</a></span>		</div>
+		<div class="c-date">
+			June 3, 2013		</div>
+				<p>I am having the same problem as Yianni. and re replacing the files, rebooting, trying with a fresh arduino 1.0.4 file did not help the problem. What version of arduino are you using for this sketch? also I am using an arduino mini, but must select the leonardo to  get the sketch to compile at all. what would I need to do for this to work the same way with the mini as the leanardo? Thanks</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=580#respond" onclick="return addComment.moveForm(&quot;comment-580&quot;, &quot;580&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-581">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/ac974614bb134406bde579d2d9b97105" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Marshall <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-581">permalink</a></span>		</div>
+		<div class="c-date">
+			June 3, 2013		</div>
+				<p>Edit: (I cant figure out how to edit a comment already posted, so i will just make a new one)<br>
+I tried using arduino 1.0.1 and replacing the files in that. It worked! so it seems that the newer versions of arduino have a problem with the way the files were modified. so if you are having errors like this:<br>
+C:\Users\Ark\AppData\Local\Temp\build5316580264749198580.tmp/sketch_nov19a.cpp:70: undefined reference to `Joystick’<br>
+C:\Users\Ark\AppData\Local\Temp\build5316580264749198580.tmp/sketch_nov19a.cpp:70: undefined reference to `Joystick’<br>
+C:\Users\Ark\AppData\Local\Temp\build5316580264749198580.tmp/sketch_nov19a.cpp:70: undefined reference to `Joystick_::setState(JoyState*)’</p>
+<p>Just revert to a older version of arduino. Arduino 1.0.1 is known to work.<br>
+Hope this helps for anyone with this problem.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=581#respond" onclick="return addComment.moveForm(&quot;comment-581&quot;, &quot;581&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-585">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">That Guy</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-585">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			June 9, 2013		</div>
+				<p>When I revisit the project, I’ll see what has gone wrong, and fix the code in the post.</p>
+<p>I’m a bit distracted at the moment.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=585#respond" onclick="return addComment.moveForm(&quot;comment-585&quot;, &quot;585&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt depth-2" id="comment-896">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/saved_resource" class="avatar avatar-60 photo avatar-default" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Nilz <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-896">permalink</a></span>		</div>
+		<div class="c-date">
+			August 13, 2013		</div>
+				<p>I cannot get it to work, not even with an older version of Arduino. Why did they change things? On my other pc it is working fine with the older version but not on this one where I actually need it to work. Is there another place where these files are stored?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=896#respond" onclick="return addComment.moveForm(&quot;comment-896&quot;, &quot;896&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even depth-2" id="comment-1722">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/450d70b6073ee98767216d84148c1e4e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Christian Demmler <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1722">permalink</a></span>		</div>
+		<div class="c-date">
+			April 4, 2014		</div>
+				<p>For me, this problem was solved by possibly either of these two things: a) overwriting the usbapi.h and hid.cpp files in the “robot” directory as well, and probably more relevant: selecting the proper model of Arduino (Leonardo) in Tools&gt;Board. Hope that helps some of you guys!</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1722#respond" onclick="return addComment.moveForm(&quot;comment-1722&quot;, &quot;1722&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-589">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/5b3b8b689b765f29201a7c33c9d81f9c" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Terrence <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-589">permalink</a></span>		</div>
+		<div class="c-date">
+			June 11, 2013		</div>
+				<p>Love your code, really been having a lot of fun with it.</p>
+<p>I am having trouble trying to change the 8bit Axis to 10bit.</p>
+<p>”<br>
+data[4] = joySt-&gt;throttle &amp; 0xFF;<br>
+	joySt-&gt;throttle &gt;&gt;= 8;<br>
+data[5] = joySt-&gt;throttle &amp; 0xFF;<br>
+”</p>
+<p>I did try this, but yeah… Didn’t work. Could you please shed some light on the subject</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=589#respond" onclick="return addComment.moveForm(&quot;comment-589&quot;, &quot;589&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-596">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-596">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			June 12, 2013		</div>
+				<p>Unfortunately, all you’re probably doing is overwriting one of the axes with the top two bits of your joystick position data.</p>
+<p>To make the code properly support higher-resolution joystick position reporting, you will have to modify the HID descriptor to properly report the axes resolution to the computer, and determine how you are planning on packing the 10-bit value into the HID report packet.</p>
+<p>The HID device specification like to have everything packed into the minimum number of bytes, and that often involves packing multiple non-mod-8 bit variables into the minimum number of bytes required. It does allow for padding bits, so it would probably be best, assuming you only have 1 10-bit axes, to simply pad that out to 16 bits in the descriptor.</p>
+<p>I’d like to sit down and write a overview of how USB HID descriptors work at some point. I wrote a bit about how they are constructed <a href="http://electronics.stackexchange.com/a/68192/1374" rel="nofollow">here</a>.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=596#respond" onclick="return addComment.moveForm(&quot;comment-596&quot;, &quot;596&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment odd alt depth-3" id="comment-653">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/5b3b8b689b765f29201a7c33c9d81f9c" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Terrence <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-653">permalink</a></span>		</div>
+		<div class="c-date">
+			July 3, 2013		</div>
+				<p>Thanx Connor appreciate the response.<br>
+I ended up going in to the descriptor and changing it up to support the 10 bit.<br>
+Quite rewarding.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=653#respond" onclick="return addComment.moveForm(&quot;comment-653&quot;, &quot;653&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-603">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/e132695b4ea7583d023797fff22de098" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Christoffer <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-603">permalink</a></span>		</div>
+		<div class="c-date">
+			June 14, 2013		</div>
+				<p>Hello.</p>
+<p>Love the example code, easy to try out and understand.</p>
+<p>Then I tried to make my own game controller using this code. Turns out not a single game I have tried seem to “hear” my leonardo. Windows sees the commands sent but I won’t get any game to understand.</p>
+<p>Mainly I wanted to control my car’s speed in GTA IV with more resolution than just on or off, like with a keyboard.</p>
+<p>I have tried messing with the HID.cpp and changed some values according to “USB HID usage table” linked above but with absent progress.</p>
+<p>I do not have much experience with programming so I am probably missing something obvious but please, point me in the right direction.</p>
+<p>Thanks!</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=603#respond" onclick="return addComment.moveForm(&quot;comment-603&quot;, &quot;603&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-606">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-606">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			June 15, 2013		</div>
+				<p>If the joystick shows up in the “Game Controllers” dialog, the problem is not with the Arduino code.</p>
+<p>One thing to note is that DirectX, as far as I can tell, only supports the first four axes, and the first [some number, not tested] of the buttons. If you are  putting your throttle on one of the additional axes, it will probably not be detected by most games.</p>
+<p>Note that the axis named “Throttle” is axis seven, and as such will not work (I think) with any games that use DirectX for input (read: most windows games).</p>
+<p>Try mapping your throttle to one of the X/Y axes, and see if that works.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=606#respond" onclick="return addComment.moveForm(&quot;comment-606&quot;, &quot;606&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment even depth-3" id="comment-607">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/e132695b4ea7583d023797fff22de098" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Christoffer <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-607">permalink</a></span>		</div>
+		<div class="c-date">
+			June 15, 2013		</div>
+				<p>I have spent some time searching for a solution for GTA IV and can’t find one. GTA IV should be able to hear my leonardo because it works with my controller in both Xinput- and DirectInput mode. I have tried to use “x360ce” (emmulates an xbox360 controller) but the program does not hear my arduino. Not sure what I should do…</p>
+<p>After that failure I tried the leonardo with Portal 2 and it worked pretty well. Was able to control movement and aim with high resolution (have not tested buttons yet). Note: Portal 2 listens to Axis X,Y,Z, Throttle and Rudder, not Rx,Ry or Rz.</p>
+<p>How can my leonardo get GTA IV’s attention, have any idea?</p>
+<p>Thank you for taking the time to help me.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=607#respond" onclick="return addComment.moveForm(&quot;comment-607&quot;, &quot;607&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-4" id="comment-609">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-609">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			June 15, 2013		</div>
+				<p>If it works with some  games, and not with others, I’m afraid you’re out of my depth. </p>
+<p>I really have no experience and little knowledge about PC driver issues. As it is, I’m not that great at MCU programming. My main area of expertise is really hardware design.</p>
+<p>Sorry.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=609#respond" onclick="return addComment.moveForm(&quot;comment-609&quot;, &quot;609&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-620">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/de96c29f062bb8a9df71e4ba5b1a6239" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Jens Eggert <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-620">permalink</a></span>		</div>
+		<div class="c-date">
+			June 19, 2013		</div>
+				<p>Hello again,</p>
+<p>with the older Arduino Version its is running perfectly!</p>
+<p>But is there any Way to change the Name of the Gamecontroller?<br>
+In the descriptors I only could find the String-Descriptor for the whole HID.</p>
+<p>Regards<br>
+Jens</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=620#respond" onclick="return addComment.moveForm(&quot;comment-620&quot;, &quot;620&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-654">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/5b3b8b689b765f29201a7c33c9d81f9c" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Terrence <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-654">permalink</a></span>		</div>
+		<div class="c-date">
+			July 3, 2013		</div>
+				<p>So I’m editing the HID.cpp file to add a collective control in.<br>
+I get rudder and throttle to work like a charm. </p>
+<p>The Collective… Not so much.</p>
+<p>this is the line I’ve added in:<br>
+0×09, 0xb5,                    //     USAGE (Collective Control)</p>
+<p>It compiles no problem. Then I go to the Leonardo properties and it’s not there.<br>
+Just a small open space where a collective is ment to be.</p>
+<p>Any one got any ideas why this is being difficult?<br>
+Or some kind of document I can go look into for help?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=654#respond" onclick="return addComment.moveForm(&quot;comment-654&quot;, &quot;654&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-694">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/341b9624833c5f5ecab7add7d942d6a5" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Peter <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-694">permalink</a></span>		</div>
+		<div class="c-date">
+			July 10, 2013		</div>
+				<p>If you still want a tool to view joystick outputs, try this:</p>
+<p><a href="http://www.leobodnar.com/products/BU0836/DIView.zip" rel="nofollow">http://www.leobodnar.com/products/BU0836/DIView.zip</a></p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=694#respond" onclick="return addComment.moveForm(&quot;comment-694&quot;, &quot;694&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-790">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/cf27373f73c61469380ccc90c0c99945" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			matii <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-790">permalink</a></span>		</div>
+		<div class="c-date">
+			July 26, 2013		</div>
+				<p>Hi,i intersting but no have programmer and no can do thats <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_sad.gif" alt=":(" class="wp-smiley"><br>
+but i need usb joustick were have only 32-64 button,<br>
+Who can made to me thats,no need analog axis my game.</p>
+<p>later need 16 rotary encoder inbut usb hid device too.<br>
+who make somechip to me ?<br>
+and what chip model need can adding all possiple button(toggle switch) max have 64 button ? one chip ? but if no can add 64 button good have 32 button usb hid device some chip. usb port have many <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_smile.gif" alt=":)" class="wp-smiley"><br>
+use 2 port and adding 2 chip then have 64 button ?<br>
+good example have leo bodnar BUO386X but i need 1 chip were have only buttons and second chip only encoders.<br>
+send mail to me if you can made to me some chip. first need 2 chip only buttons, later more if working good.<br>
+and second made to me 16 encoder inbut chip,about 2 chip buy too first.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=790#respond" onclick="return addComment.moveForm(&quot;comment-790&quot;, &quot;790&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-820">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/f30ec764d01010838bc2b52536d26533" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://hackedfrompieces.wordpress.com/" rel="external nofollow" class="url">kopfkopfkopfaffe</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-820">permalink</a></span>		</div>
+		<div class="c-date">
+			July 31, 2013		</div>
+				<p>Hey!</p>
+<p>Your stuff works fine, thanks so much for that!<br>
+-But- I ran into errors when I tried to manipulate buttons greater than button 6.  I use your firmware in connection with the KEYPAD.h to read a keypad and a few potentiometers and use them as a joystick. I only handle single keypress events because it is sufficient for my application. However, when I try to assign button values like this<br>
+======================================<br>
+uint32_t values[] = {<br>
+  0×1,0×2,0×4,0×8,0×10,0×20,0×40,0×80,0×100,0×200,0×400,0×800,0×1000,0×2000,0×4000,0×8000,0×10000,0×20000,0×40000,0×80000,0×100000,0×200000,0×400000,0×800000  };</p>
+<p>…</p>
+<p>  if (KeyPressed){<br>
+    joySt.buttons = values[KeyPressed-1];<br>
+  }<br>
+  Joystick.setState(&amp;joySt);<br>
+======================================</p>
+<p>where KeyPressed is a char and holds the number of the key from 1-23. The first 6 Buttons work file. Button 7 triggers a joystick event, but is not set. The other buttons do not work. If I print out the values instead, they look OK, in BIN as well as in HEX.<br>
+I know that there are such things as bitshifting that make my lookup-table unnecessary and I tried that before but this is what it’s become after debugging for some time and in my opinion not part of the issue. So do you have any idea what’s wrong there?<br>
+Thanks in advance!</p>
+<p>Full Code: <a href="http://pastebin.com/J55QCqEN" rel="nofollow">http://pastebin.com/J55QCqEN</a></p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=820#respond" onclick="return addComment.moveForm(&quot;comment-820&quot;, &quot;820&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="comment-1643">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1643">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 24, 2014		</div>
+				<p>First, it should be as simple to select specific buttons as just saying <code>(1 &lt;&lt; (KeyPressed-1))</code> or <code>_BV(KeyPressed-1)</code> (to use the GNU mnemonic).</p>
+<p>Regarding the issues with the other buttons, I don’t really know what to tell you. All 32 buttons work in my implementation, so I’d suspect there are access or data-size issues some weird issues with variables being cast to smaller variables, and that is truncating the buttons.</p>
+<p>I really don’t know exactly what’s going on. It also could be something happening in the HID device descriptor causing the descriptor to not be parsed correctly, or a number of other things. The fact that the buttons that work aren’t a multiple of 8 (e.g. the problem is not aligned on byte-boundaries) is interesting, but I don’t know what exactly it should point at.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1643#respond" onclick="return addComment.moveForm(&quot;comment-1643&quot;, &quot;1643&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-890">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/63dd1ec50ffae4bfc5f77926a94774b4" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Diego Páez <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-890">permalink</a></span>		</div>
+		<div class="c-date">
+			August 11, 2013		</div>
+				<p>Thanks was very help full. Great Job. Brigadão.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=890#respond" onclick="return addComment.moveForm(&quot;comment-890&quot;, &quot;890&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-926">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/c983020cace0a75abddfe8eb4ecebccd" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://marcogrilli.com/thenerdling" rel="external nofollow" class="url">zephyrin</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-926">permalink</a></span>		</div>
+		<div class="c-date">
+			September 12, 2013		</div>
+				<p>how can i read buttons and analog inputs?<br>
+i’m not 100% sure how to do it<br>
+i am modding an old usb steering wheel that died so i need:<br>
+  11 buttons<br>
+  3 potentiometers steering, throttle and brake</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=926#respond" onclick="return addComment.moveForm(&quot;comment-926&quot;, &quot;926&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment even depth-2" id="comment-927">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/c983020cace0a75abddfe8eb4ecebccd" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://marcogrilli.com/thenerdling" rel="external nofollow" class="url">zephyrin</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-927">permalink</a></span>		</div>
+		<div class="c-date">
+			September 12, 2013		</div>
+				<p>never mind i got it working <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=927#respond" onclick="return addComment.moveForm(&quot;comment-927&quot;, &quot;927&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1151">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/92add474846a4f3a360c78311851a141" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			hellclimber <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1151">permalink</a></span>		</div>
+		<div class="c-date">
+			October 5, 2013		</div>
+				<p>Does anybody here know where i can find the list of places where my arduino is looking for any .h or .cpp-files? I copied both HID.cpp and USBAPI.h to any place I could imagine, but got allways “does not  name a type” and so on. Tried old and new arduino-versions.</p>
+<p>As long as the type is not accepted I do not know wether the inplementation is running or not.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1151#respond" onclick="return addComment.moveForm(&quot;comment-1151&quot;, &quot;1151&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-1372">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/saved_resource" class="avatar avatar-60 photo avatar-default" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Jason <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1372">permalink</a></span>		</div>
+		<div class="c-date">
+			November 27, 2013		</div>
+				<p>Hi,</p>
+<p>Nice work and I got the codes running in my micro. But how to change the USB source codes to make the device appeared in the windows as just a Joystick, now it appears as keyboard, mouse and joystick combination, it’s quite annoying. </p>
+<p>Any help would be very thankful!</p>
+<p>Jason</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1372#respond" onclick="return addComment.moveForm(&quot;comment-1372&quot;, &quot;1372&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1521">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/44cc6bd52919bdb3da6df39290a60be5" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Kelvin <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1521">permalink</a></span>		</div>
+		<div class="c-date">
+			January 3, 2014		</div>
+				<p>Can you still use the keyboard functions as well with this? I haven’t yet got it to work sending keyboard commands at the same time. I am assuming it is one or the other?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1521#respond" onclick="return addComment.moveForm(&quot;comment-1521&quot;, &quot;1521&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment even depth-2" id="comment-1525">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/44cc6bd52919bdb3da6df39290a60be5" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Kelvin <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1525">permalink</a></span>		</div>
+		<div class="c-date">
+			January 5, 2014		</div>
+				<p>I have been going through the HID.CPP file and there is an error. Where you have the #if KBAM_ENABLED it should read #ifdef KBAM_ENABLED as it throws up an error when you un-comment #define KBAM_ENABLED (the same with the raw hid later as well).</p>
+<p>It seems though that I can either have the keyboard &amp; mouse or the joystick at one time, I have not been able to get all working at the same time (I only really need keyboard and joystick).</p>
+<p>I am hitting some fundamental limit of HID that can’t have 3 types of controller from one descriptor?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1525#respond" onclick="return addComment.moveForm(&quot;comment-1525&quot;, &quot;1525&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-3" id="comment-1644">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1644">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 24, 2014		</div>
+				<p>There should be no fundamental issue. The problem boils down to the fact that the HID descriptor includes it’s size in the contents, so the descriptor size for keyboard is different from keyboard + mouse, is different from joystick, is different from joystick + keyboard, etc…</p>
+<p>Basically, since I was only interested in a joystick, I just disabled the KBAM segment all-together. The <code>#ifdef</code>s would have to be much more complex to allow arbitrary device descriptor structures.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1644#respond" onclick="return addComment.moveForm(&quot;comment-1644&quot;, &quot;1644&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-1523">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/0dde067204ede38a5abf0220edadbd18" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://www.electronicamikuni.com/" rel="external nofollow" class="url">milton rodriguez</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1523">permalink</a></span>		</div>
+		<div class="c-date">
+			January 4, 2014		</div>
+				<p>I’m starting to program in leonardo and am interested in axial as joystick controls, specifically for flight simulators, and I have 4 controls such as control of the propeller and mexcla of combuatible, I welcome your comments, thanks</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1523#respond" onclick="return addComment.moveForm(&quot;comment-1523&quot;, &quot;1523&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1526">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/96fc779978bf15ef77f628a9cb744398" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			sergio <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1526">permalink</a></span>		</div>
+		<div class="c-date">
+			January 5, 2014		</div>
+				<p>Hello, good , I’m newbie in this world , I have a leonardo Arduino board , and I’m trying to connect pedals (accelerator , brake and clutch ) , and before modifying the ‘d want code prove it , but I copy your sketch and modify files USBAPI and HID , and I get the following errors :<br>
+Arduino : 1.5.5 (Windows 8) , Plate ” Arduino Leonardo ”</p>
+<p>In file included from C: \ Program Files (x86 ) \ Arduino \ hardware \ arduino \ avr \ cores \ arduino / HardwareSerial.h : 118,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from C: \ Program Files (x86 ) \ Arduino \ hardware \ arduino \ avr \ cores \ arduino / Arduino.h : 197,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from ejemplo_internet_wheel.ino : 7:<br>
+C: \ Program Files (x86 ) \ Arduino \ hardware \ arduino \ avr \ cores \ arduino / USBAPI.h : 1:1 : error: unterminated # ifndef<br>
+ejemplo_internet_wheel : 7: error: ‘ JoyState_t ‘ does not name a type<br>
+ejemplo_internet_wheel.ino : In function ‘void setup () ‘ :<br>
+ejemplo_internet_wheel : 14 : error: ‘ JOYST ‘ was not Declared In this scope<br>
+ejemplo_internet_wheel.ino : In function ‘void loop () ‘ :<br>
+ejemplo_internet_wheel : 34 : error: ‘ JOYST ‘ was not Declared In this scope<br>
+ejemplo_internet_wheel : 67 : error: ‘ Joystick’ was not Declared In this scope</p>
+<p>&nbsp;&nbsp;This report would have more Information with<br>
+&nbsp;&nbsp;” Show verbose output During compilation ”<br>
+&nbsp;&nbsp;enabled in File &gt; Preferences.</p>
+<p>Could give me a hand ?<br>
+Greetings , Thanks before hand and forgive my English , I’m no good and I use the google translator</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1526#respond" onclick="return addComment.moveForm(&quot;comment-1526&quot;, &quot;1526&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-1645">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1645">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 24, 2014		</div>
+				<p>Use arduino 1.0.*</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1645#respond" onclick="return addComment.moveForm(&quot;comment-1645&quot;, &quot;1645&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-1533">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/67e70ce88501da3eb31aa89c12dc1579" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			mnt <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1533">permalink</a></span>		</div>
+		<div class="c-date">
+			January 9, 2014		</div>
+				<p>Worked instantly. Thanks <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1533#respond" onclick="return addComment.moveForm(&quot;comment-1533&quot;, &quot;1533&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-1538">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/saved_resource" class="avatar avatar-60 photo avatar-default" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			wesman <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1538">permalink</a></span>		</div>
+		<div class="c-date">
+			January 11, 2014		</div>
+				<p>I purchased an Arduino Micro to create the perfect joystick.   Most joystick conversions were based on the mega.  considering that the micro has the same controller and in/outs as the Leonardo, I believe that this is the answer that I’ve been looking for. Thanks for the detailed explanation and well commented code changes, which are easy to follow.  I finally understand how this whole thing is supposed to work.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1538#respond" onclick="return addComment.moveForm(&quot;comment-1538&quot;, &quot;1538&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-1558">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/1dd09a6ba655e17c6c5d1646b4066df2" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			hdrman <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1558">permalink</a></span>		</div>
+		<div class="c-date">
+			February 1, 2014		</div>
+				<p>Trying to compile with Arduino 1.5.5<br>
+Error:</p>
+<p>C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino/USBAPI.h:31: error: ISO C++ forbids declaration of ‘ring_buffer’ with no type</p>
+<p>C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino/USBAPI.h:31: error: expected ‘;’ before ‘*’ token</p>
+<p>Any ideas?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1558#respond" onclick="return addComment.moveForm(&quot;comment-1558&quot;, &quot;1558&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-1614">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1614">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 14, 2014		</div>
+				<p>Don’t use arduino 1.5?</p>
+<p>(it should work with 1.0.*, I think)</p>
+<p>It should be possible to patch to make it work with 1.5, but I don’t really feel like dealing with it at the moment. I would assume the arduino people changed the layout of some of their internal data-structures (which this changes), and that is why it’s no longer compiling.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1614#respond" onclick="return addComment.moveForm(&quot;comment-1614&quot;, &quot;1614&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1567">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/57644e89c955d8303dd3c5f27eb4bc7a" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			ptako <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1567">permalink</a></span>		</div>
+		<div class="c-date">
+			February 10, 2014		</div>
+				<p>I’ve got the same problem as hdrman also in Arduino 1.5.5. – r2</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1567#respond" onclick="return addComment.moveForm(&quot;comment-1567&quot;, &quot;1567&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-even depth-1" id="comment-1568">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/57644e89c955d8303dd3c5f27eb4bc7a" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			ptako <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1568">permalink</a></span>		</div>
+		<div class="c-date">
+			February 10, 2014		</div>
+				<p>My error during compiling is:</p>
+<p>In file included from D:\arduino15\arduino-1.5.5-r2\hardware\arduino\sam\cores\arduino/Arduino.h:213,<br>
+                 from Joy.ino:9:</p>
+<p>D:\arduino15\arduino-1.5.5-r2\hardware\arduino\sam\cores\arduino/USB/USBAPI.h:31: error: ISO C++ forbids declaration of ‘ring_buffer’ with no type</p>
+<p>D:\arduino15\arduino-1.5.5-r2\hardware\arduino\sam\cores\arduino/USB/USBAPI.h:31: error: expected ‘;’ before ‘*’ token</p>
+<p>D:\arduino15\arduino-1.5.5-r2\hardware\arduino\sam\cores\arduino/USB/USBAPI.h:44: error: conflicting declaration ‘Serial_ Serial’</p>
+<p>D:\arduino15\arduino-1.5.5-r2\hardware\arduino\sam\variants\arduino_due_x/variant.h:218: error: ‘Serial’ has a previous declaration as ‘UARTClass Serial’</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1568#respond" onclick="return addComment.moveForm(&quot;comment-1568&quot;, &quot;1568&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1588">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/46efa2491797d8cf49d68cf73d0f44b0" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Amrit <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1588">permalink</a></span>		</div>
+		<div class="c-date">
+			February 27, 2014		</div>
+				<p>How can I modify this code to use Arduino Leo as Xinput device (XBOX compatible) rather than Dinput (PC/PS3)</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1588#respond" onclick="return addComment.moveForm(&quot;comment-1588&quot;, &quot;1588&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-1612">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1612">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 14, 2014		</div>
+				<p>You’d need to figure out how Xinput devices enumerate, and change the HID descriptor and message structure to act like that.</p>
+<p>I don’t know how xbox controllers work, but it’s probably not <em>too</em> complex. The hard part is reverse-engineering the xbox descriptors.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1612#respond" onclick="return addComment.moveForm(&quot;comment-1612&quot;, &quot;1612&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-1607">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/43355eab438cfc63ec8bd8605653941c" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Dominik B <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1607">permalink</a></span>		</div>
+		<div class="c-date">
+			March 13, 2014		</div>
+				<p>Thanks work fine.</p>
+<p>How can I modify this code to use 2 joysticks with one Arduino Leonardo?</p>
+<p>Any help would be very thankful! <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1607#respond" onclick="return addComment.moveForm(&quot;comment-1607&quot;, &quot;1607&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-1613">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1613">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 14, 2014		</div>
+				<p>It may be possible to change the HID descriptor to enumerate as two joysticks, but I have not experimented with that.</p>
+<p>You would have to change the descriptor and packet structure.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1613#respond" onclick="return addComment.moveForm(&quot;comment-1613&quot;, &quot;1613&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1618">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/302e198705c3f575bce6a965ad6a7995" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Gavin <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1618">permalink</a></span>		</div>
+		<div class="c-date">
+			March 16, 2014		</div>
+				<p>Looking for a little help to send 10bit data values ( 0-1024 instead of 0-255 )<br>
+For higher resolution in the pitch, roll, rudder and throttle axis.<br>
+Nice work by the way <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1618#respond" onclick="return addComment.moveForm(&quot;comment-1618&quot;, &quot;1618&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-1620">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1620">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 17, 2014		</div>
+				<p>You will have to edit the HID descriptor to change the reported variable sizes. You’ll also have to change the HID packet structure, since it’s currently exploiting the fact that all the values it’s reporting are some multiple of 8 bits. You’d either have to add padding bits, or manually pack your 10-bit variables into the HID message.</p>
+<p>Protips: you can make a <code>union</code> of a struct containing your data, and a byte-array, and then use the union to allow easy access to the struct as a <code>char</code> array for transmitting. Also, the <code>-fpack-struct</code> command line argument for GCC may be relevant here, but there is no easy way to access it through the arduino interfaces (it’s a GCC compiler flag).</p>
+<p>Realistically, you may have more then enough CPU time to just manually pack your outgoing messages before sending them over the USB interface. You don’t need more then ~100 Hz update rate for human-interfaces, really.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1620#respond" onclick="return addComment.moveForm(&quot;comment-1620&quot;, &quot;1620&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-1622">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/100f0f24c070dcf80db5dae9a44ed055" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			wyatt <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1622">permalink</a></span>		</div>
+		<div class="c-date">
+			March 17, 2014		</div>
+				<p>I got this working with a SNES controller <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_biggrin.gif" alt=":D" class="wp-smiley">  Thank you for posting this and saving me a lot of trouble with figuring out the USB documentation.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1622#respond" onclick="return addComment.moveForm(&quot;comment-1622&quot;, &quot;1622&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-1629">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/971acdf4d77a0a6e48ac27b2785372d7" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Jay <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1629">permalink</a></span>		</div>
+		<div class="c-date">
+			March 20, 2014		</div>
+				<p>thanks so much for your detailed instruction and code!!<br>
+I made it to play games though XDD<br>
+<a href="http://www.youtube.com/watch?v=r0uTzgX-CaU" rel="nofollow">http://www.youtube.com/watch?v=r0uTzgX-CaU</a></p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1629#respond" onclick="return addComment.moveForm(&quot;comment-1629&quot;, &quot;1629&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-1631">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/0a65f7c90a0ccd5c8b892836b229d301" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Jon <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1631">permalink</a></span>		</div>
+		<div class="c-date">
+			March 20, 2014		</div>
+				<p>Thanks for post this how-to!  How can I add LED emulation like caps-lock and num-lock?  Or, how can I have this show up as a joystick and a keyboard?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1631#respond" onclick="return addComment.moveForm(&quot;comment-1631&quot;, &quot;1631&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-1641">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/302e198705c3f575bce6a965ad6a7995" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://hackaday.io/project/599-Aerospace-Control-Interface-" rel="external nofollow" class="url">Gavin</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1641">permalink</a></span>		</div>
+		<div class="c-date">
+			March 24, 2014		</div>
+				<p>Hi, Thanks for the great tutorial works like a charm, I am trying to implement 10 bit and 16 bit values. I can understand the 8 bit part but i can’t seem to get my head around splitting values into two bytes and the getting them to recombine i either get nothing or bleed into other parts.<br>
+Anyway this is my project: <a href="http://hackaday.io/project/599-Aerospace-Control-Interface-" rel="nofollow">http://hackaday.io/project/599-Aerospace-Control-Interface-</a></p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1641#respond" onclick="return addComment.moveForm(&quot;comment-1641&quot;, &quot;1641&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment odd alt depth-2" id="comment-1642">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/302e198705c3f575bce6a965ad6a7995" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://hackaday.io/project/599-Aerospace-Control-Interface-" rel="external nofollow" class="url">Gavin</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1642">permalink</a></span>		</div>
+		<div class="c-date">
+			March 24, 2014		</div>
+				<p>Sorry i missed your reply from my previous post, had a lot happen since then. I understand it may be worth writing straight to 16 bit array and having the arduino upscale to match I.E. mapping 0-1024 to 0- 65535. I may upgrade to this in the future and it will certainly be useful for larger control ranges I.E. limb flexor ranges on VR Controls.<br>
+I’ve been using parts of code from here but the topic seems dead, code work beautifly but doesn’t help me understand the problem at hand, anyway the link:<br>
+<a href="http://forum.freetronics.com/viewtopic.php?f=27&t=734&start=10" rel="nofollow">http://forum.freetronics.com/viewtopic.php?f=27&amp;t=734&amp;start=10</a></p>
+<p>And my project: <a href="http://forum.freetronics.com/viewtopic.php?f=27&t=734&start=10" rel="nofollow">http://forum.freetronics.com/viewtopic.php?f=27&amp;t=734&amp;start=10</a></p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1642#respond" onclick="return addComment.moveForm(&quot;comment-1642&quot;, &quot;1642&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-3" id="comment-1646">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1646">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 24, 2014		</div>
+				<p>Well, it started out as a long comment, but wound up as a post. See if <a href="http://www.imaginaryindustries.com/blog/?p=449" rel="nofollow">this</a> helps.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1646#respond" onclick="return addComment.moveForm(&quot;comment-1646&quot;, &quot;1646&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-3" id="comment-1647">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1647">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 24, 2014		</div>
+				<p>Also, if you have questions about how the actual descriptors work, I can probably help with that. I have been vaguely meaning to write a bit of a document on HID-descriptor basics at some point.</p>
+<p>Having someone bug me about it would probably make me actually do something.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1647#respond" onclick="return addComment.moveForm(&quot;comment-1647&quot;, &quot;1647&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment even depth-4" id="comment-1651">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/302e198705c3f575bce6a965ad6a7995" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://hackaday.io/project/599-Aerospace-Control-Interface-" rel="external nofollow" class="url">Gavin</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1651">permalink</a></span>		</div>
+		<div class="c-date">
+			March 25, 2014		</div>
+				<p>Thanks so much for the post, when I get chance and am a little less burnt out I will dive head first into this. I am looking to properly understand the flow. from writing the code for the microcontroller. How and why it packs the data for different data lengths. What parts of the descriptor tell the host side what it is, what to expect and how to serve that data up.<br>
+I’m going to write this all up too in my understanding and view points from a different perspective, one with no educational or working background in programming or electronics.<br>
+Feel free to contact me via email</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1651#respond" onclick="return addComment.moveForm(&quot;comment-1651&quot;, &quot;1651&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-1694">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/670b300f210a1a7dc4523f89d920a589" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			locodog <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1694">permalink</a></span>		</div>
+		<div class="c-date">
+			March 30, 2014		</div>
+				<p>Hi I’ve been working with a UNO to make a HUGE joystick (128 buttons, 48 * 8 bit analogue, 32 * 10 bit analogue, 128 bytes output! [it is actually a HID dj software controller] ) this is working great but I am stuck at pc to device communication, for LEDs  and other software to device communication.<br>
+I’m waffling, I’m thinking of upgrading the uno, so, could this code base,<br>
+1; accept pc to device HID communication?<br>
+2; handle 128 bytes output?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1694#respond" onclick="return addComment.moveForm(&quot;comment-1694&quot;, &quot;1694&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-1696">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1696">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			March 30, 2014		</div>
+				<p>1: Theoretically. You’d need to write some PC-end software, and rework the HID descriptor stuff in the arduino.</p>
+<ol>
+<li>I don’t see any reason it couldn’t. Apparently the maximum descriptor size is 255 bytes, and even then, you could break a larger descriptor up into separate packets.</li>
+</ol>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1696#respond" onclick="return addComment.moveForm(&quot;comment-1696&quot;, &quot;1696&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment odd alt depth-3" id="comment-1704">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/670b300f210a1a7dc4523f89d920a589" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			locodog <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1704">permalink</a></span>		</div>
+		<div class="c-date">
+			March 31, 2014		</div>
+				<p>Cool, the pc side software is taken care of as the djing program can already do that, Although I’m still yet to find an example of a HID device to accept a pc’s output.</p>
+<p>Leonardo on to my shopping list.<br>
+If only there was a 32u4 product that had 16 bit analogue on board (more a wish than a need)</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1704#respond" onclick="return addComment.moveForm(&quot;comment-1704&quot;, &quot;1704&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-1707">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/670b300f210a1a7dc4523f89d920a589" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			locodog <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1707">permalink</a></span>		</div>
+		<div class="c-date">
+			April 1, 2014		</div>
+				<p>Any plans for ading vibration?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1707#respond" onclick="return addComment.moveForm(&quot;comment-1707&quot;, &quot;1707&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+
+<li class="comment odd alt thread-even depth-1" id="comment-1964">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/saved_resource" class="avatar avatar-60 photo avatar-default" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Richard <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1964">permalink</a></span>		</div>
+		<div class="c-date">
+			April 14, 2014		</div>
+				<p>I am using your solution for attaching rotary encoders. However I have the problem that the changes are not picked up at approx. &gt; 10 Hz. When switching the buttons purely programmatically via delay(…), this occurs as well. Is there anything I can do via the USB setup   (possibly in HID.cpp) to get the events read out more accurately? The problem lets me dial only rather slowly.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1964#respond" onclick="return addComment.moveForm(&quot;comment-1964&quot;, &quot;1964&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="comment-1966">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1966">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			April 14, 2014		</div>
+				<p>Are you trying to feed the quadrature encoder outputs in as discrete buttons?</p>
+<p>That’s your problem there. If you want to pass quadrature counts up through a HID device, you need to decode your quadrature encoder waveforms in the microcontroller. Then, you just send the delta counts (e.g. + or – encoder tics) since the last interval for each update.</p>
+<p>This is how computer mice work, by the way.</p>
+<p>With proper MCU code, and interrupts, you should be able to manage &gt; 50 Khz encoder rates.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1966#respond" onclick="return addComment.moveForm(&quot;comment-1966&quot;, &quot;1966&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment odd alt depth-3" id="comment-1970">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/saved_resource" class="avatar avatar-60 photo avatar-default" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Richard <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1970">permalink</a></span>		</div>
+		<div class="c-date">
+			April 14, 2014		</div>
+				<p>Yes I decode the phased signal whether the dial turns right or left in the Arduino and output the signal into two joystick buttons (1st for right dial 2nd for left dial). I’d agree with you that this wouldn’t be feasible with a driven rotary encoder, but it is a manual dial with 30 clicks per 360 deg rotation. Turning it manually gives maybe 20Hz output which I expected to behandled well (obviously not the case ;-)). The receiving application (Flight Simulator FSX with FSUIPC add-on) can only handle joystick buttons for my purpose (dialing instrument settings).</p>
+<p>Is there a limitation how often I can call Joystick.setState(..)? What would the limiting frequency be and is that due to the Arduino side or due to Windows?</p>
+<p>When I put the encoder input on the LED (pin 13), the LED flashes in sync with turning the knob so I’d expect that the Arduino is not the limiting factor.</p>
+<p>As far as I understand I would have to send delta counts not as joystick buttons counts, right? Which would be the correct device to handle this with?</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1970#respond" onclick="return addComment.moveForm(&quot;comment-1970&quot;, &quot;1970&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment byuser comment-author-admin bypostauthor even depth-4" id="comment-1973">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/dbd9d461a54696a1e51d697e38b3b96e" class="avatar avatar-60 photo" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			<a href="http://you%27reviewingit/" rel="external nofollow" class="url">Connor</a> <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1973">permalink</a></span><span class="asterisk">*</span>		</div>
+		<div class="c-date">
+			April 14, 2014		</div>
+				<p>You’re hitting issues with USB latency. The USB interface only sends updates at somewhere between 30 Hz and a few hundred hertz, depending on a whole pile of messy drivers and system configuration on the PC end (USB is shit from a latency perspective).</p>
+<p>Frankly, I don’t really understand how you’re using an encoder with a standard button interface. Encoders output a quadrature signal, which is fundamentally a two-bit signal. I don’t really understand how you’re funneling it through a 1-bit (e.g. a button) interface, unless you’re just using it for counting pulses, and ignoring the direction of rotation (unless each rotation direction is mapped to a different button?).</p>
+<p>In any event, yes, you’d have to send delta-counts as an axis value, rather then a button. It would just act like a joystick, where the speed of rotation is proportional to the “joystick” deflection.</p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=1973#respond" onclick="return addComment.moveForm(&quot;comment-1973&quot;, &quot;1973&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+<ul class="children">
+
+<li class="comment odd alt depth-5" id="comment-1985">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/saved_resource" class="avatar avatar-60 photo avatar-default" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Richard <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-1985">permalink</a></span>		</div>
+		<div class="c-date">
+			April 14, 2014		</div>
+				<p>I map each direction to a different button as you said. Problem is, that the consuming application can deal only with buttons for my use case. Is really latency on PC side the issue. I wasn’t able to find any statement on that on the net. Do you have a source?</p>
+<p>From the USB code coming along with the Arduino, I deduce that it is set up for 64 byte frames at 1 ms interval (D_ENDPOINT(USB_ENDPOINT_IN (HID_ENDPOINT_INT),USB_ENDPOINT_TYPE_INTERRUPT,0×40,0×01 in HID.cpp). USB_SEND(..) in USBCore.cpp is worth a look as well as it stalls when sending of data is blocked. More interesting is the fact, that the method returns the number of bytes sent which isn’t used for error detection in HID_SendReport(..). I’ll have a look into this maybe.</p>
+				<div class="reply">
+					</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment even thread-odd thread-alt depth-1" id="comment-2002">
+	<div class="c-grav"><img alt="" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/saved_resource" class="avatar avatar-60 photo avatar-default" height="60" width="60"></div>
+	<div class="c-body">
+		<div class="c-head">
+			Richard <span class="c-permalink"><a href="http://www.imaginaryindustries.com/blog/?p=80#comment-2002">permalink</a></span>		</div>
+		<div class="c-date">
+			April 14, 2014		</div>
+				<p>Seems definitely to be the PC end to be the problem. I changed HID.cpp to return the number of bytes transmitted, which suggests none get lost. Also transfer time is in submillisecond range.  I measured the frequency I do updates which show that it is in the 20Hz range. So, you were right, PC end is the problem. Thanks for your feedback <img src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/icon_wink.gif" alt=";-)" class="wp-smiley"> </p>
+				<div class="reply">
+			<a class="comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80&replytocom=2002#respond" onclick="return addComment.moveForm(&quot;comment-2002&quot;, &quot;2002&quot;, &quot;respond&quot;, &quot;80&quot;)">Reply</a>		</div>
+			</div><!--end c-body-->
+</li><!-- #comment-## -->
+			</ol>
+				<div class="navigation">
+			<div class="alignleft"></div>
+			<div class="alignright"></div>
+		</div>
+					</div><!--end comments-->
+
+	<div id="respond">
+		<div class="cancel-comment-reply">
+			<small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.imaginaryindustries.com/blog/?p=80#respond" style="display:none;">Click here to cancel reply.</a></small>
+		</div>
+		<h4 id="postcomment">Leave a Reply</h4>
+					<form action="http://www.imaginaryindustries.com/blog/wp-comments-post.php" method="post" id="commentform">
+									<p><label for="author" class="comment-field"><small>Name: :</small></label><input class="text-input" type="text" name="author" id="author" value="" size="22" tabindex="1"></p>
+					<p><label for="email" class="comment-field"><small>Email:	 :</small></label><input class="text-input" type="text" name="email" id="email" value="" size="22" tabindex="2"></p>
+					<p><label for="url" class="comment-field"><small>Website:</small></label><input class="text-input" type="text" name="url" id="url" value="" size="22" tabindex="3"></p>
+								<p><label for="comment" class="comment-field"><small>Comment:</small></label><textarea name="comment" id="comment" cols="50" rows="10" tabindex="4"></textarea></p>
+				<p class="guidelines"><strong>Note:</strong> You can use basic XHTML in your comments. Your email address will <strong>never</strong> be published.</p>
+				<p class="comments-rss"><a href="http://www.imaginaryindustries.com/blog/?feed=rss2&p=80">Subscribe to this comment feed via RSS</a></p>
+				<div>
+					<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="f98680054d"></p><script type="text/javascript" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/form.js"></script>
+<p style="display: none;"></p>				</div>
+				<p>
+					<input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment">
+					<input type="hidden" name="comment_post_ID" value="80">
+				</p>
+				<div>
+					<input type="hidden" name="comment_post_ID" value="80" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+				</div>
+			<input type="hidden" id="ak_js" name="ak_js" value="1399600394195"></form><!--end commentform-->
+	</div><!--end respond-->
+
+
+	</div><!--end content-->
+<div id="sidebar">
+			<ul>
+		<li id="search-3" class="widget widget_search"><h2 class="widgettitle">Search</h2>
+<form method="get" id="search_form" action="http://www.imaginaryindustries.com/blog/">
+	<div>
+		<input type="text" value="type and press enter" name="s" id="s" onfocus="if (this.value == &#39;type and press enter&#39; ) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39; ) {this.value = &#39;type and press enter&#39;;}">
+		<input type="hidden" value="Search">
+	</div>
+</form>
+</li><li id="categories-3" class="widget widget_categories"><h2 class="widgettitle">Categories</h2>		<ul>
+	<li class="cat-item cat-item-6"><a href="http://www.imaginaryindustries.com/blog/?cat=6" title="View all posts filed under Computers">Computers</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.imaginaryindustries.com/blog/?cat=3" title="View all posts filed under Electronics">Electronics</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.imaginaryindustries.com/blog/?cat=4" title="View all posts filed under Photography">Photography</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.imaginaryindustries.com/blog/?cat=8" title="View all posts filed under Power-Meter Project">Power-Meter Project</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://www.imaginaryindustries.com/blog/?cat=14" title="View all posts filed under Programming">Programming</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.imaginaryindustries.com/blog/?cat=5" title="View all posts filed under Python">Python</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.imaginaryindustries.com/blog/?cat=1" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.imaginaryindustries.com/blog/?cat=11" title="View all posts filed under Venting">Venting</a>
+</li>
+		</ul>
+</li><li id="archives-3" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>		<ul>
+			<li><a href="http://www.imaginaryindustries.com/blog/?m=201403">March 2014</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201402">February 2014</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201401">January 2014</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201311">November 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201310">October 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201309">September 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201307">July 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201306">June 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201305">May 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201303">March 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201302">February 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201301">January 2013</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201211">November 2012</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201206">June 2012</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201005">May 2010</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=201001">January 2010</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=200911">November 2009</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=200910">October 2009</a></li>
+	<li><a href="http://www.imaginaryindustries.com/blog/?m=200909">September 2009</a></li>
+		</ul>
+</li>	</ul>
+								</div><!--end sidebar-->	<div id="footer">
+		<p class="right">Copyright 2014 </p>
+		<p><a href="http://thethemefoundry.com/vigilance/">Vigilance Theme</a> by <a href="http://thethemefoundry.com/">The Theme Foundry</a></p>
+	</div><!--end footer-->
+</div><!--end wrapper-->
+<script type="text/javascript" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Turning an Arduino Leonardo into a joystick.   Imaginary Industries_files/markdown.min.js"></script>
+
+
+</body></html>

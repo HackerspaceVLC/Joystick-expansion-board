@@ -1,0 +1,17 @@
+/*
+Theme Name: subTheme
+Theme URI: DERP
+Description: Child Theme for Vigilance
+Author: Fake Name
+Author URI: HERP
+Template: vigilance
+Version: 0.1
+*/
+
+@import url("../vigilance/style.css");
+
+code { 
+background-color: #EEEEEE;
+font-family: "Consolas", "Menlo", "Monaco", "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+}
+
