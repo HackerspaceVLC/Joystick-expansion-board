@@ -4336,11 +4336,9 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 <part name="P+7" library="supply1" deviceset="+5V" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="+5_1" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
-<part name="GND" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="+5_2" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="+5_3" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="GND8" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
-<part name="GND9" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="RELOJ1" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="CE1" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="LOAD1" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
@@ -4366,6 +4364,11 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 <part name="SERIE3" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="SERIE4" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 <part name="SERIE" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="GND9" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="GND10" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="GND11" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="GND12" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="GND13" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
 </parts>
 <sheets>
 <sheet>
@@ -4605,9 +4608,6 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 <instance part="+5_1" gate="G$1" x="10.16" y="12.7" smashed="yes" rot="R90">
 <attribute name="NAME" x="10.8458" y="6.477" size="1.778" layer="95" rot="R90"/>
 </instance>
-<instance part="GND" gate="G$1" x="25.4" y="-2.54" smashed="yes" rot="R270">
-<attribute name="NAME" x="24.7142" y="3.683" size="1.778" layer="95" rot="R270"/>
-</instance>
 <instance part="+5_2" gate="G$1" x="15.24" y="12.7" smashed="yes" rot="R90">
 <attribute name="NAME" x="15.9258" y="6.477" size="1.778" layer="95" rot="R90"/>
 </instance>
@@ -4616,9 +4616,6 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 </instance>
 <instance part="GND8" gate="G$1" x="20.32" y="-2.54" smashed="yes" rot="R270">
 <attribute name="NAME" x="19.6342" y="3.683" size="1.778" layer="95" rot="R270"/>
-</instance>
-<instance part="GND9" gate="G$1" x="15.24" y="-2.54" smashed="yes" rot="R270">
-<attribute name="NAME" x="14.5542" y="3.683" size="1.778" layer="95" rot="R270"/>
 </instance>
 <instance part="RELOJ1" gate="G$1" x="134.62" y="30.48" smashed="yes">
 <attribute name="NAME" x="123.317" y="29.7942" size="1.778" layer="95"/>
@@ -4694,6 +4691,21 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 </instance>
 <instance part="SERIE" gate="G$1" x="50.8" y="58.42" smashed="yes" rot="R270">
 <attribute name="NAME" x="50.1142" y="69.723" size="1.778" layer="95" rot="R270"/>
+</instance>
+<instance part="GND9" gate="G$1" x="25.4" y="-2.54" smashed="yes" rot="R270">
+<attribute name="NAME" x="24.7142" y="3.683" size="1.778" layer="95" rot="R270"/>
+</instance>
+<instance part="GND10" gate="G$1" x="30.48" y="-2.54" smashed="yes" rot="R270">
+<attribute name="NAME" x="29.7942" y="3.683" size="1.778" layer="95" rot="R270"/>
+</instance>
+<instance part="GND11" gate="G$1" x="35.56" y="-2.54" smashed="yes" rot="R270">
+<attribute name="NAME" x="34.8742" y="3.683" size="1.778" layer="95" rot="R270"/>
+</instance>
+<instance part="GND12" gate="G$1" x="40.64" y="-2.54" smashed="yes" rot="R270">
+<attribute name="NAME" x="39.9542" y="3.683" size="1.778" layer="95" rot="R270"/>
+</instance>
+<instance part="GND13" gate="G$1" x="45.72" y="-2.54" smashed="yes" rot="R270">
+<attribute name="NAME" x="45.0342" y="3.683" size="1.778" layer="95" rot="R270"/>
 </instance>
 </instances>
 <busses>
@@ -4813,13 +4825,22 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 <pinref part="GND6" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="GND" gate="G$1" pin="P"/>
 <pinref part="GND7" gate="1" pin="GND"/>
+<pinref part="GND8" gate="G$1" pin="P"/>
 <wire x1="30.48" y1="-5.08" x2="25.4" y2="-5.08" width="0.1524" layer="91"/>
 <pinref part="GND9" gate="G$1" pin="P"/>
-<pinref part="GND8" gate="G$1" pin="P"/>
-<wire x1="15.24" y1="-5.08" x2="20.32" y2="-5.08" width="0.1524" layer="91"/>
 <wire x1="25.4" y1="-5.08" x2="20.32" y2="-5.08" width="0.1524" layer="91"/>
+<junction x="25.4" y="-5.08"/>
+<pinref part="GND10" gate="G$1" pin="P"/>
+<junction x="30.48" y="-5.08"/>
+<wire x1="30.48" y1="-5.08" x2="35.56" y2="-5.08" width="0.1524" layer="91"/>
+<pinref part="GND11" gate="G$1" pin="P"/>
+<wire x1="35.56" y1="-5.08" x2="40.64" y2="-5.08" width="0.1524" layer="91"/>
+<junction x="35.56" y="-5.08"/>
+<pinref part="GND12" gate="G$1" pin="P"/>
+<wire x1="40.64" y1="-5.08" x2="45.72" y2="-5.08" width="0.1524" layer="91"/>
+<junction x="40.64" y="-5.08"/>
+<pinref part="GND13" gate="G$1" pin="P"/>
 </segment>
 </net>
 <net name="+5V" class="0">
