@@ -1,0 +1,3 @@
+http://es.farnell.com/texas-instruments/sn74hc166d/ic-shift-register-smd-soic16-7v/dp/1287501			shift register
+http://es.farnell.com/yageo-phycomp/yc164-jr-07100kl/array-de-resistencias-arv241-1206/dp/9234616		resistor array, 100k 4 units
+
